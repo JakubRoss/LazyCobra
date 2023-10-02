@@ -2,31 +2,51 @@ namespace CoMo
 {
     public partial class Cobra : Form
     {
-        bool flag = false;
+        bool ButtonFlag = false;
+
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         public Cobra()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            if (flag)
+            if (ButtonFlag)
             {
                 button.BackColor = Color.MediumSeaGreen;
                 button.Text = "Start";
-                flag = false;
+                ButtonFlag = false;
             }
-            else
+            else //kod dla startu
             {
                 button.Text = "Stop";
                 button.BackColor = Color.LightCoral;
-                flag = true;
+                ButtonFlag = true;
+
+
+                while (ButtonFlag)
+                {
+                    await Task.Delay(60000);
+                    await MoveMouseAsync();
+                }
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private async Task MoveMouseAsync()
+        {
+            Point currentPosition = Cursor.Position;
+            Cursor.Position = new Point(currentPosition.X, currentPosition.Y - 10);
+
+            await Task.Delay(1000);
+            currentPosition = Cursor.Position;
+
+            Cursor.Position = new Point(currentPosition.X, currentPosition.Y + 10);
         }
     }
 }
