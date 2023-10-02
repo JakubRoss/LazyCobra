@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cobra));
             button = new Button();
+            GITIFY = new LinkLabel();
+            label1 = new Label();
             SuspendLayout();
             // 
             // button
@@ -48,11 +50,40 @@
             button.UseVisualStyleBackColor = false;
             button.Click += button1_Click;
             // 
+            // GITIFY
+            // 
+            GITIFY.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            GITIFY.AutoSize = true;
+            GITIFY.LinkColor = Color.LightCoral;
+            GITIFY.Location = new Point(12, 220);
+            GITIFY.Name = "GITIFY";
+            GITIFY.Size = new Size(58, 21);
+            GITIFY.TabIndex = 1;
+            GITIFY.TabStop = true;
+            GITIFY.Text = "GITIFY";
+            GITIFY.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Light", 12F, FontStyle.Italic, GraphicsUnit.Point);
+            label1.ForeColor = Color.WhiteSmoke;
+            label1.Location = new Point(212, 220);
+            label1.Name = "label1";
+            label1.Size = new Size(76, 21);
+            label1.TabIndex = 2;
+            label1.Text = "JakubRoss";
+            label1.MouseEnter += me;
+            label1.MouseLeave += ml;
+            // 
             // Cobra
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(300, 250);
+            Controls.Add(label1);
+            Controls.Add(GITIFY);
             Controls.Add(button);
             Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             ForeColor = Color.White;
@@ -63,13 +94,16 @@
             MinimumSize = new Size(300, 250);
             Name = "Cobra";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Cobra";
+            Text = "LazyCobra";
             Load += Form1_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button button;
+        protected LinkLabel GITIFY;
+        private Label label1;
     }
 }

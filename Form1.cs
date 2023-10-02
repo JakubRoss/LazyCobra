@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace CoMo
 {
     public partial class Cobra : Form
@@ -47,6 +49,29 @@ namespace CoMo
             currentPosition = Cursor.Position;
 
             Cursor.Position = new Point(currentPosition.X, currentPosition.Y + 10);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            try
+            {
+                System.Diagnostics.Process.Start("cmd", $"/c start https://www.gitify.net");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Wystapil blad podczas otwierania przegladarki: {ex.Message}", "Blad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ml(object sender, EventArgs e)
+        {
+            label1.ForeColor = Color.WhiteSmoke;
+        }
+
+        private void me(object sender, EventArgs e)
+        {
+            label1.ForeColor = Color.Black;
         }
     }
 }
