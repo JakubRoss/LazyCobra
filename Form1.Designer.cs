@@ -1,4 +1,6 @@
-﻿namespace CoMo
+﻿using System.Windows.Forms;
+
+namespace CoMo
 {
     partial class Cobra
     {
@@ -52,12 +54,15 @@
             // 
             // GITIFY
             // 
+            GITIFY.AccessibleRole = AccessibleRole.None;
             GITIFY.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             GITIFY.AutoSize = true;
-            GITIFY.LinkColor = Color.LightCoral;
+            GITIFY.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            GITIFY.LinkBehavior = LinkBehavior.NeverUnderline;
+            GITIFY.LinkColor = Color.DarkSeaGreen;
             GITIFY.Location = new Point(12, 220);
             GITIFY.Name = "GITIFY";
-            GITIFY.Size = new Size(58, 21);
+            GITIFY.Size = new Size(57, 21);
             GITIFY.TabIndex = 1;
             GITIFY.TabStop = true;
             GITIFY.Text = "GITIFY";
@@ -67,13 +72,13 @@
             // 
             label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Light", 12F, FontStyle.Italic, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.WhiteSmoke;
-            label1.Location = new Point(212, 220);
+            label1.Location = new Point(226, 226);
             label1.Name = "label1";
-            label1.Size = new Size(76, 21);
+            label1.Size = new Size(65, 13);
             label1.TabIndex = 2;
-            label1.Text = "JakubRoss";
+            label1.Text = "Jakub Ross";
             label1.MouseEnter += me;
             label1.MouseLeave += ml;
             // 
