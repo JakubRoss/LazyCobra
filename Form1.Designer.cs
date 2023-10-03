@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace CoMo
+﻿namespace CoMo
 {
     partial class Cobra
     {
@@ -30,10 +28,12 @@ namespace CoMo
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cobra));
             button = new Button();
             linkLabel = new LinkLabel();
             nameLabel = new Label();
+            notifyIcon1 = new NotifyIcon(components);
             SuspendLayout();
             // 
             // button
@@ -82,6 +82,13 @@ namespace CoMo
             nameLabel.MouseEnter += me;
             nameLabel.MouseLeave += ml;
             // 
+            // notifyIcon1
+            // 
+            notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "LazyCobra";
+            notifyIcon1.Visible = true;
+            notifyIcon1.MouseClick += ShowWindow;
+            // 
             // Cobra
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
@@ -100,7 +107,7 @@ namespace CoMo
             Name = "Cobra";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LazyCobra";
-            Load += Form1_Load;
+            Resize += Form1_Resize;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -110,5 +117,6 @@ namespace CoMo
         private Button button;
         protected LinkLabel linkLabel;
         private Label nameLabel;
+        private NotifyIcon notifyIcon1;
     }
 }

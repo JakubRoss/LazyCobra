@@ -1,6 +1,3 @@
-using System.Diagnostics;
-using System.Windows.Forms;
-
 namespace CoMo
 {
     public partial class Cobra : Form
@@ -38,6 +35,15 @@ namespace CoMo
         #region mainForm/Form1
         private void Form1_Load(object sender, EventArgs e)
         {
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                ShowInTaskbar = false;
+            }
         }
 
         #endregion
@@ -87,6 +93,28 @@ namespace CoMo
             currentPosition = Cursor.Position;
 
             Cursor.Position = new Point(currentPosition.X, currentPosition.Y + 10);
+        }
+
+        private void ShowWindow(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // Kliknieto lewym przyciskiem myszy na ikone
+                // Minimalizuj lub przywroc okno, w zaleznosci od jego obecnego stanu
+                if (!this.Visible)
+                {
+                    ShowInTaskbar = true;
+                    this.Show();
+                    WindowState = FormWindowState.Normal;
+                    this.StartPosition = FormStartPosition.CenterScreen;
+                }
+                else
+                {
+                    ShowInTaskbar = false;
+                    this.Hide();
+                }
+
+            }
         }
 
         #endregion
