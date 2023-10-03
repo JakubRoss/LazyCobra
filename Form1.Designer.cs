@@ -32,8 +32,8 @@ namespace CoMo
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cobra));
             button = new Button();
-            GITIFY = new LinkLabel();
-            label1 = new Label();
+            linkLabel = new LinkLabel();
+            nameLabel = new Label();
             SuspendLayout();
             // 
             // button
@@ -52,43 +52,43 @@ namespace CoMo
             button.UseVisualStyleBackColor = false;
             button.Click += button1_Click;
             // 
-            // GITIFY
+            // linkLabel
             // 
-            GITIFY.AccessibleRole = AccessibleRole.None;
-            GITIFY.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            GITIFY.AutoSize = true;
-            GITIFY.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            GITIFY.LinkBehavior = LinkBehavior.NeverUnderline;
-            GITIFY.LinkColor = Color.DarkSeaGreen;
-            GITIFY.Location = new Point(12, 220);
-            GITIFY.Name = "GITIFY";
-            GITIFY.Size = new Size(57, 21);
-            GITIFY.TabIndex = 1;
-            GITIFY.TabStop = true;
-            GITIFY.Text = "GITIFY";
-            GITIFY.LinkClicked += linkLabel1_LinkClicked;
+            linkLabel.AccessibleRole = AccessibleRole.None;
+            linkLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            linkLabel.AutoSize = true;
+            linkLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            linkLabel.LinkBehavior = LinkBehavior.NeverUnderline;
+            linkLabel.LinkColor = Color.DarkSeaGreen;
+            linkLabel.Location = new Point(12, 220);
+            linkLabel.Name = "linkLabel";
+            linkLabel.Size = new Size(57, 21);
+            linkLabel.TabIndex = 1;
+            linkLabel.TabStop = true;
+            linkLabel.Text = "GITIFY";
+            linkLabel.LinkClicked += linkLabel1_LinkClicked;
             // 
-            // label1
+            // nameLabel
             // 
-            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.WhiteSmoke;
-            label1.Location = new Point(226, 226);
-            label1.Name = "label1";
-            label1.Size = new Size(65, 13);
-            label1.TabIndex = 2;
-            label1.Text = "Jakub Ross";
-            label1.MouseEnter += me;
-            label1.MouseLeave += ml;
+            nameLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            nameLabel.AutoSize = true;
+            nameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
+            nameLabel.ForeColor = Color.WhiteSmoke;
+            nameLabel.Location = new Point(226, 226);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new Size(65, 13);
+            nameLabel.TabIndex = 2;
+            nameLabel.Text = "Jakub Ross";
+            nameLabel.MouseEnter += me;
+            nameLabel.MouseLeave += ml;
             // 
             // Cobra
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(300, 250);
-            Controls.Add(label1);
-            Controls.Add(GITIFY);
+            Controls.Add(nameLabel);
+            Controls.Add(linkLabel);
             Controls.Add(button);
             Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             ForeColor = Color.White;
@@ -108,7 +108,7 @@ namespace CoMo
         #endregion
 
         private Button button;
-        protected LinkLabel GITIFY;
-        private Label label1;
+        protected LinkLabel linkLabel;
+        private Label nameLabel;
     }
 }

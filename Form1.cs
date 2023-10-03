@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace CoMo
 {
@@ -29,28 +30,21 @@ namespace CoMo
 
                 while (ButtonFlag)
                 {
-                    await Task.Delay(60000);
-                    await MoveMouseAsync();
+                    await MoveMouseAsync(60000);
                 }
             }
         }
 
+        #region mainForm/Form1
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
-        private async Task MoveMouseAsync()
-        {
-            Point currentPosition = Cursor.Position;
-            Cursor.Position = new Point(currentPosition.X, currentPosition.Y - 10);
+        #endregion
 
-            await Task.Delay(1000);
-            currentPosition = Cursor.Position;
+        #region LinkLabels & nameLabel
 
-            Cursor.Position = new Point(currentPosition.X, currentPosition.Y + 10);
-        }
-
+        //otwieranie przegladarki i linku za pomaca consoli
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
@@ -64,14 +58,37 @@ namespace CoMo
             }
         }
 
+        //mouse leave on nameLabel
         private void ml(object sender, EventArgs e)
         {
-            label1.ForeColor = Color.WhiteSmoke;
+            nameLabel.ForeColor = Color.WhiteSmoke;
         }
 
+        //mouse enter on nameLabel
         private void me(object sender, EventArgs e)
         {
-            label1.ForeColor = Color.Black;
+            nameLabel.ForeColor = Color.Black;
         }
+
+        #endregion
+
+        #region Utils
+
+        //asynchroniczna metoda przesuwajaca kursor o 10 pixeli w gore i w dol
+        //delay w ms
+        private async Task MoveMouseAsync(int delay)
+        {
+            await Task.Delay(delay);
+
+            Point currentPosition = Cursor.Position;
+            Cursor.Position = new Point(currentPosition.X, currentPosition.Y - 10);
+
+            await Task.Delay(1000);
+            currentPosition = Cursor.Position;
+
+            Cursor.Position = new Point(currentPosition.X, currentPosition.Y + 10);
+        }
+
+        #endregion
     }
 }
