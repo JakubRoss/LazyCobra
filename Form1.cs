@@ -1,10 +1,17 @@
+using System.Runtime.InteropServices;
+
 namespace CoMo
 {
     public partial class Cobra : Form
     {
         bool ButtonFlag = false;
+        int frequency = 30000;  //[ms]
+        [DllImport("user32.dll")]
+        static extern void mouse_event(uint dwFlags, int dx, int dy, uint dwData, int dwExtraInfo);
 
-        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        const uint MOUSEEVENTF_MOVE = 0x0001;
+        const uint MOUSEEVENTF_ABSOLUTE = 0x8000;
+
         public Cobra()
         {
             InitializeComponent();
@@ -24,10 +31,11 @@ namespace CoMo
                 button.BackColor = Color.LightCoral;
                 ButtonFlag = true;
 
-
                 while (ButtonFlag)
                 {
-                    await MoveMouseAsync(60000);
+                    await MoveMouseSmoothly(Screen.PrimaryScreen.Bounds.Width / 4, Screen.PrimaryScreen.Bounds.Height - 20, 100);
+                    await MoveMouseSmoothly(Screen.PrimaryScreen.Bounds.Width / 2 + 50, Screen.PrimaryScreen.Bounds.Height / 2-25,100);
+                    await Task.Delay(frequency);
                 }
             }
         }
@@ -80,19 +88,33 @@ namespace CoMo
 
         #region Utils
 
-        //asynchroniczna metoda przesuwajaca kursor o 10 pixeli w gore i w dol
-        //delay w ms
-        private async Task MoveMouseAsync(int delay)
+        static async Task MoveMouseSmoothly(int targetX, int targetY, int steps)
         {
-            await Task.Delay(delay);
+            int currentX = Cursor.Position.X;
+            int currentY = Cursor.Position.Y;
 
-            Point currentPosition = Cursor.Position;
-            Cursor.Position = new Point(currentPosition.X, currentPosition.Y - 10);
+            for (int i = 1; i <= steps; i++)
+            {
+                double ratio = (double)i / steps;
+                int x = (int)(currentX + (targetX - currentX) * ratio);
+                int y = (int)(currentY + (targetY - currentY) * ratio);
 
-            await Task.Delay(1000);
-            currentPosition = Cursor.Position;
+                MoveMouseTo(x, y);
+                await Task.Delay(10); // Czas opoznienia miedzy krokami (mozesz dostosowac)
+            }
 
-            Cursor.Position = new Point(currentPosition.X, currentPosition.Y + 10);
+            // Na koniec ustaw kursor na docelowe wspolrzedne
+            MoveMouseTo(targetX, targetY);
+        }
+
+        static void MoveMouseTo(int x, int y)
+        {
+            int absoluteX = (int)((x / (double)Screen.PrimaryScreen.Bounds.Width) * 65535);
+            int absoluteY = (int)((y / (double)Screen.PrimaryScreen.Bounds.Height) * 65535);
+
+            uint flags = MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE;
+
+            mouse_event(flags, absoluteX, absoluteY, 0, 0);
         }
 
         private void ShowWindow(object sender, MouseEventArgs e)
@@ -118,5 +140,28 @@ namespace CoMo
         }
 
         #endregion
+
+        private void comboBoxFrequency_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBoxFrequency.SelectedIndex)
+            {
+                case 0:
+                    frequency = 59000;
+                    break;
+                case 1:
+                    frequency = 119000;
+                    break;
+                case 2:
+                    frequency = 179000;
+                    break;
+                case 3:
+                    frequency =  2390000;
+                    break;
+                case 4:
+                    frequency = 299000;
+                    break;
+
+            }
+        }
     }
 }

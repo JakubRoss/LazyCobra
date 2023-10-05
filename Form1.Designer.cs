@@ -34,6 +34,8 @@
             linkLabel = new LinkLabel();
             nameLabel = new Label();
             notifyIcon1 = new NotifyIcon(components);
+            comboBoxFrequency = new ComboBox();
+            labelFrequency = new Label();
             SuspendLayout();
             // 
             // button
@@ -42,7 +44,7 @@
             button.BackColor = Color.MediumSeaGreen;
             button.FlatAppearance.BorderSize = 0;
             button.FlatStyle = FlatStyle.Flat;
-            button.Location = new Point(60, 80);
+            button.Location = new Point(151, 59);
             button.Margin = new Padding(4);
             button.Name = "button";
             button.Size = new Size(180, 90);
@@ -60,7 +62,7 @@
             linkLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             linkLabel.LinkBehavior = LinkBehavior.NeverUnderline;
             linkLabel.LinkColor = Color.DarkSeaGreen;
-            linkLabel.Location = new Point(12, 220);
+            linkLabel.Location = new Point(12, 181);
             linkLabel.Name = "linkLabel";
             linkLabel.Size = new Size(57, 21);
             linkLabel.TabIndex = 1;
@@ -74,7 +76,7 @@
             nameLabel.AutoSize = true;
             nameLabel.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point);
             nameLabel.ForeColor = Color.WhiteSmoke;
-            nameLabel.Location = new Point(226, 226);
+            nameLabel.Location = new Point(270, 187);
             nameLabel.Name = "nameLabel";
             nameLabel.Size = new Size(65, 13);
             nameLabel.TabIndex = 2;
@@ -89,11 +91,37 @@
             notifyIcon1.Visible = true;
             notifyIcon1.MouseClick += ShowWindow;
             // 
+            // comboBoxFrequency
+            // 
+            comboBoxFrequency.BackColor = SystemColors.Control;
+            comboBoxFrequency.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxFrequency.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            comboBoxFrequency.ForeColor = SystemColors.WindowFrame;
+            comboBoxFrequency.FormattingEnabled = true;
+            comboBoxFrequency.Items.AddRange(new object[] { "1min", "2min", "3min", "4min", "5min" });
+            comboBoxFrequency.Location = new Point(12, 91);
+            comboBoxFrequency.Name = "comboBoxFrequency";
+            comboBoxFrequency.Size = new Size(121, 29);
+            comboBoxFrequency.TabIndex = 3;
+            comboBoxFrequency.SelectedIndexChanged += comboBoxFrequency_SelectedIndexChanged;
+            // 
+            // labelFrequency
+            // 
+            labelFrequency.AutoSize = true;
+            labelFrequency.ForeColor = SystemColors.WindowFrame;
+            labelFrequency.Location = new Point(28, 59);
+            labelFrequency.Name = "labelFrequency";
+            labelFrequency.Size = new Size(89, 21);
+            labelFrequency.TabIndex = 4;
+            labelFrequency.Text = "Frequency";
+            // 
             // Cobra
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(300, 250);
+            ClientSize = new Size(344, 211);
+            Controls.Add(labelFrequency);
+            Controls.Add(comboBoxFrequency);
             Controls.Add(nameLabel);
             Controls.Add(linkLabel);
             Controls.Add(button);
@@ -102,8 +130,8 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             MaximizeBox = false;
-            MaximumSize = new Size(450, 400);
-            MinimumSize = new Size(300, 250);
+            MaximumSize = new Size(360, 250);
+            MinimumSize = new Size(360, 250);
             Name = "Cobra";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "LazyCobra";
@@ -118,5 +146,7 @@
         protected LinkLabel linkLabel;
         private Label nameLabel;
         private NotifyIcon notifyIcon1;
+        private ComboBox comboBoxFrequency;
+        private Label labelFrequency;
     }
 }
